@@ -90,14 +90,21 @@ leftArrowElement.addEventListener("click", function () {
     if(!isMoving) {
         if (page - 1 < 0) {
             sectionElemnts[sectionElemnts.length - 1].style.zIndex = sectionElemnts.length - 2
-            sectionElemnts[page].style.opacity = "0"
-            page = sectionElemnts.length - 1
+            sectionElemnts[0].style.opacity = "0"
+            isMoving = true
             setTimeout(() => {
                 sectionElemnts[0].style.opacity = "1"
-                for (let i = sectionElemnts.length - 1; i >= 0; i--) {
-                    sectionElemnts[i].style.zIndex = i
+                page = sectionElemnts.length - 1
+                sectionElemnts[page].style.zIndex = sectionElemnts.length - 1
+                let tab = []
+                for (let i = sectionElemnts.length - 2; i >= 0; i--) {
+                    tab.push(i)
                 }
-            }, 1000)
+                for (let i = 0; i < sectionElemnts.length - 1; i++) {
+                    sectionElemnts[i].style.zIndex = tab[i]
+                }
+                isMoving = false
+            },1000)
         } else {
             sectionElemnts[page].style.opacity = "0"
             let oldPage = page
