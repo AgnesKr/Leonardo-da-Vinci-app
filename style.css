@@ -22,11 +22,12 @@ section {
     height: 100vh;
     position: absolute;
     padding: 2rem;
-    transition: opacity 0.4s;
-    -webkit-transition: opacity 0.4s;
-    -moz-transition: opacity 0.4s;
-    -ms-transition: opacity 0.4s;
-    -o-transition: opacity 0.4s;
+    opacity: 1;
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    -o-transition: opacity 1s;
 }
 
 section.frame {
