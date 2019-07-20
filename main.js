@@ -6,7 +6,7 @@ const leftArrowElement = document.querySelector(".arrow-left"),
 let page = 0
 
 for (let i = 0; i < sectionElemnts.length; i++) {
-    sectionElemnts[i].style.zIndex = sectionElemnts.length - i
+    sectionElemnts[i].style.zIndex = sectionElemnts.length - i - 1
 }
 
 window.addEventListener("scroll", function () {
@@ -20,7 +20,7 @@ window.addEventListener("resize", function () {
 changeArrowsPosition()
 
 function changeArrowsPosition() {
-    if(document.body.offsetWidth < 950) {
+    if (document.body.offsetWidth < 950) {
         leftArrowElement.style.visibility = "hidden"
         rightArrowElement.style.visibility = "hidden"
     } else {
@@ -31,18 +31,63 @@ function changeArrowsPosition() {
     }
 }
 
-rightArrowElement.addEventListener("click", function() {
-    sectionElemnts[page].style.opacity = "0"
-    setTimeout(() => {
+rightArrowElement.addEventListener("click", function () {
+    if(page == sectionElemnts.length - 1) {
+        page = 0
+        let tab = []
         for(let i = 0; i < sectionElemnts.length; i++) {
-            sectionElemnts[i].style.zIndex = Number(sectionElemnts[i].style.zIndex) + 1
-            console.log(sectionElemnts[i])
+            tab.push(i)
+        } 
+        tab.reverse()
+        console.log(tab)
+        for(let i = sectionElemnts.length - 1 ; i >= 0 ; i--) {
+            sectionElemnts[i].style.zIndex = tab[i]
         }
-        sectionElemnts[page].style.zIndex = 1
-        sectionElemnts[page].style.opacity = "1"
+    }else {
         page++
-        if(page === sectionElemnts.length  ) {
-            page = 0
+        let number = page - 1,
+        tab = []
+        for(let i = page - 1; i >= 0; i--) {
+            tab.push(number)
+            number--
         }
-    }, 400)
+        for(let i = page - 1; i >= 0; i--) {
+            sectionElemnts[i].style.zIndex = tab[i]
+            number--
+        }
+        sectionElemnts[page].style.zIndex =  "4"
+        let tab2 = []
+        for(let i = sectionElemnts.length - 1; i >= page; i--) {
+            tab2.push(i)
+        }
+        for(let i = page + 1; i < sectionElemnts.length; i++){
+            sectionElemnts[i].style.zIndex = tab2[i - page]
+        }
+        console.log(page)
+    }
+})
+
+leftArrowElement.addEventListener("click", function () {
+    if (page - 1 < 0) {
+        sectionElemnts[sectionElemnts.length - 1].style.zIndex = sectionElemnts.length - 2
+        sectionElemnts[page].style.opacity = "0"
+        page = sectionElemnts.length - 1
+        setTimeout(() => {
+            sectionElemnts[0].style.opacity = "1"
+            for (let i = sectionElemnts.length - 1; i >= 0; i--) {
+                sectionElemnts[i].style.zIndex = i
+            }
+        }, 400)
+    } else {
+        sectionElemnts[page].style.opacity = "0"
+        setTimeout(() => {
+            for (let i = sectionElemnts.length - 1; i >= 0; i--) {
+                sectionElemnts[i].style.zIndex = Number(sectionElemnts[i].style.zIndex) + 1
+            }
+            sectionElemnts[page].style.zIndex = 0
+            sectionElemnts[page].style.opacity = "1"
+            page = page - 1
+        }, 400)
+    }
+    console.log(page)
 })
