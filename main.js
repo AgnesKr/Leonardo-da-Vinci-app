@@ -67,7 +67,15 @@ rightArrowElement.addEventListener("click", function () {
 
 leftArrowElement.addEventListener("click", function () {
     if (page - 1 < 0) {
-        
+        sectionElemnts[sectionElemnts.length - 1].style.zIndex = sectionElemnts.length - 2
+        sectionElemnts[page].style.opacity = "0"
+        page = sectionElemnts.length - 1
+        setTimeout(() => {
+            sectionElemnts[0].style.opacity = "1"
+            for (let i = sectionElemnts.length - 1; i >= 0; i--) {
+                sectionElemnts[i].style.zIndex = i
+            }
+        }, 400)
     } else {
         page--
         let number = page - 1,
