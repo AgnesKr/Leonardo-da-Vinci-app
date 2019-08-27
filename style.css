@@ -1,44 +1,88 @@
-body {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+*::before, ::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #261C14;
 }
 
 main{
-    width: 100vw;
-    height: 100vh;
-    background: rgb(63, 23, 4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    position: relative;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.frame {
-    min-width: 600px;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: 60%;
+.slider {
+    
 }
 
 .slide {
-    width: 60%;
-    min-width: 600px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
+    min-width: 650px;
     top: 0;
     transition: opacity 1s;
     -webkit-transition: opacity 1s;
     -moz-transition: opacity 1s;
     -ms-transition: opacity 1s;
     -o-transition: opacity 1s;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .slide-1 {
-    background: red;
+    background-image: url(./img/image_darker.jpg);
+    background-position: center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding: 20px 20px;
+    text-shadow: 2px 0px 2px rgba(38,28,20,0.5);
 }
+
+.slide-1 .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 80px;
+    border: 3px solid white;
+}
+
+h1 {
+    color: white;
+    font-size: 4.5rem;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding-top: 3rem;
+}
+
+h2 {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding-bottom: 5rem;
+}
+
+.and {
+    font-size: 3rem;
+}
+
 .slide-2 {
     background: black;
 }
@@ -53,7 +97,14 @@ main{
 }
 
 .arrow {
+    position: fixed;
     fill: #D1C3A4;
+    top: 45%;
+    transition: .2s;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    -ms-transition: .2s;
+    -o-transition: .2s;
 }
 
 .arrow:hover {
