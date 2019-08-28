@@ -3,6 +3,7 @@ const control = []
 
 let key = 0
 for (let i = slides.length - 1; i >= 0; i--) {
+
     slides[i].style.zIndex = key
     control.push({
         id: key,
@@ -34,11 +35,36 @@ document.querySelector(".arrow-left").addEventListener("click", () => {
             break;
         }
     }
-    console.log(currentSlide, nextSlide)
     currentSlide.style.opacity = 0
     nextSlide.style.opacity = 1
-    console.log(slides, control)
+    animationTopAndBottom(currentSlide,nextSlide)
 })
+
+function animationTopAndBottom(currentSlide, nextSlide) {
+    const nextSlideTop = nextSlide.querySelector(".top"),
+    nextSlideBottom = nextSlide.querySelector(".bottom"),
+    currentSlideTop = currentSlide.querySelector(".top"),
+    currentSlideBottom = currentSlide.querySelector(".bottom")
+    
+    if(nextSlideTop) {
+        nextSlideTop.style.top = "0%"
+    }
+
+    if(nextSlideBottom) {
+        nextSlideBottom.style.bottom = "0%"
+    }
+    setTimeout(() => {
+        if(currentSlideTop) {
+            currentSlideTop.style.top = "-100%"
+        }
+        
+        if(currentSlideBottom) {
+            currentSlideBottom.style.bottom = "-100%"
+        }
+    },1000)
+   
+    
+}
 
 document.querySelector(".arrow-right").addEventListener("click", () => {
     let currentSlide
@@ -57,8 +83,7 @@ document.querySelector(".arrow-right").addEventListener("click", () => {
             break;
         }
     }
-    console.log(currentSlide, nextSlide)
     currentSlide.style.opacity = 0
     nextSlide.style.opacity = 1
-    console.log(slides, control)
+    animationTopAndBottom(currentSlide,nextSlide)
 })

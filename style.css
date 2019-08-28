@@ -111,3 +111,23 @@ h2 {
 .arrow:hover {
     fill: white;
 }
+
+.top {
+    position: relative;
+    top: -100%;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
+
+.bottom {
+    position: relative;
+    bottom: -100%;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
+}
